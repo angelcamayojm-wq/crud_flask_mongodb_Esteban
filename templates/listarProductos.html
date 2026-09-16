@@ -1,0 +1,70 @@
+{% include 'encabezado.html' %}
+
+<section class="panel-card table-card reveal">
+    <div class="toolbar mb-4">
+        <div class="section-heading">
+            <div class="section-icon">
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <div>
+                <h2>Inventario de Productos</h2>
+                <small style="color: var(--muted)">Administra tus productos guardados en la nube</small>
+            </div>
+        </div>
+        <div class="toolbar-actions">
+            <a href="/frmAgregarProducto" class="btn btn-primary">
+                <i class="fa-solid fa-plus"></i> Nuevo Producto
+            </a>
+        </div>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Imagen</th>
+                    <th style="text-align: right;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in listaProductos %}
+                <tr>
+                    <td><span class="email-pill">#{{ producto["codigo"] }}</span></td>
+                    <td><strong class="user-name">{{ producto["nombre"] }}</strong></td>
+                    <td><span class="price-tag">${{ producto["precio"] }}</span></td>
+                    <td><span class="badge-category">{{ producto["categoria"] }}</span></td>
+                    <td>
+                        <img src="../static/imagenes/{{ producto['_id'] }}.jpg" class="product-img" alt="foto" onerror="this.src='https://via.placeholder.com/50'">
+                    </td>
+                    <td>
+                        <div class="actions-cell" style="justify-content: flex-end;">
+                            <a href="/consultar/{{ producto['_id'] }}" class="table-action edit" title="Editar">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button onclick="abrirModalEliminar('{{ producto['_id'] }}')" class="table-action delete" title="Eliminar">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="6">
+                        <div class="empty-state">
+                            <div class="empty-illustration">📦</div>
+                            <h3>No hay productos registrados</h3>
+                            <p>Comienza agregando un nuevo producto al sistema.</p>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+{% include 'piePagina.html' %}

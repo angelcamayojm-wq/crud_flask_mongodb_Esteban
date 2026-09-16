@@ -1,0 +1,59 @@
+{% include 'encabezado.html' %}
+
+<section class="panel-card form-card reveal" style="max-width: 600px; margin: 0 auto;">
+    <div class="section-heading mb-4">
+        <div class="section-icon">
+            <i class="fa-solid fa-plus text-primary"></i>
+        </div>
+        <div>
+            <h2>AGREGAR PRODUCTO</h2>
+            <small style="color: var(--muted)">Ingresa los datos para registrar un nuevo elemento</small>
+        </div>
+    </div>
+
+    {% if mensaje %}
+    <div class="toast danger mb-4" style="position: static; width: 100%;">
+        {{ mensaje }}
+    </div>
+    {% endif %}
+
+    <form action="/agregarProducto" method="POST" enctype="multipart/form-data" class="user-form">
+        <div class="field">
+            <label>Código</label>
+            <input type="number" name="txtCodigo" placeholder="Ej. 10" required>
+        </div>
+
+        <div class="field">
+            <label>Nombre del Producto</label>
+            <input type="text" name="txtNombre" placeholder="Ej. Televisor 4K" required>
+        </div>
+
+        <div class="field">
+            <label>Precio ($)</label>
+            <input type="number" name="txtPrecio" placeholder="Ej. 2500000" required>
+        </div>
+
+        <div class="field">
+            <label>Categoría</label>
+            <select name="cbCategoria" class="field input" style="width: 100%; border: 1px solid var(--line); border-radius: 16px; background: rgba(255, 255, 255, 0.08); color: var(--text); min-height: 52px; padding: 0 16px;" required>
+                <option value="ELECTRODOMESTICO" style="background: var(--bg-soft);">ELECTRODOMESTICO</option>
+                <option value="ROPA" style="background: var(--bg-soft);">ROPA</option>
+                <option value="OTRO" style="background: var(--bg-soft);">OTRO</option>
+            </select>
+        </div>
+
+        <div class="field">
+            <label>Foto (jpg)</label>
+            <input type="file" name="fileFoto" accept=".jpg" style="padding: 10px;" required>
+        </div>
+
+        <div class="form-actions mt-4">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-floppy-disk"></i> Guardar Producto
+            </button>
+            <a href="/" class="btn btn-soft">Cancelar</a>
+        </div>
+    </form>
+</section>
+
+{% include 'piePagina.html' %}

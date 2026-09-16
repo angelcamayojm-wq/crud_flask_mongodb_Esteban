@@ -1,0 +1,40 @@
+{% include 'encabezado.html' %}
+
+<div class="card col-md-6 offset-md-3">
+    <div class="card-header bg-warning text-white text-center">
+        <h3>EDITAR PRODUCTO</h3>
+    </div>
+    <div class="card-body">
+        <form action="/actualizar" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="idProducto" value="{{ producto['_id'] }}">
+            <div class="mb-3">
+                <label>Código:</label>
+                <input type="number" name="txtCodigo" value="{{ producto['codigo'] }}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Nombre:</label>
+                <input type="text" name="txtNombre" value="{{ producto['nombre'] }}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Precio:</label>
+                <input type="number" name="txtPrecio" value="{{ producto['precio'] }}" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label>Categoría:</label>
+                <select name="cbCategoria" class="form-control" required>
+                    <option value="ELECTRODOMESTICO" {% if producto['categoria'] == 'ELECTRODOMESTICO' %}selected{% endif %}>ELECTRODOMESTICO</option>
+                    <option value="ROPA" {% if producto['categoria'] == 'ROPA' %}selected{% endif %}>ROPA</option>
+                    <option value="OTRO" {% if producto['categoria'] == 'OTRO' %}selected{% endif %}>OTRO</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label>Seleccione Foto si va a cambiar:</label>
+                <input type="file" name="fileFoto" class="form-control" accept=".jpg">
+            </div>
+            <button type="submit" class="btn btn-success">Editar</button>
+            <a href="/" class="btn btn-warning">Cancelar</a>
+        </form>
+    </div>
+</div>
+
+{% include 'piePagina.html' %}
