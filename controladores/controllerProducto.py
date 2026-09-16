@@ -123,3 +123,4 @@ def eliminarProducto(idProducto):
     except Exception as error:
         print(error)
         return redirect("/")
+
