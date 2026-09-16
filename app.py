@@ -1,3 +1,4 @@
+from controladores.controllerProducto import *
 from flask import Flask
 import pymongo
 
@@ -14,7 +15,8 @@ baseDatos = miConexion["GESTIONPRODUCTOS"]
 # Crear objeto para referenciar la colección
 productos = baseDatos["PRODUCTOS"]
 
-from controladores.controllerProducto import *
+
 
 if __name__ == "__main__":
     app.run(port=3000, debug=True)
+
